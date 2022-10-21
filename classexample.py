@@ -6,6 +6,27 @@ class Reptile:
         self.x = x
         self.y = y
 
+    def gethealth(self):
+        return self.health
+
+    def sethealth(self, health):
+        if type(health) is int and health >= 0:
+            self.health = health
+        else:
+            print(f"invalid health value of {health}")
+
+    def getcolour(self):
+        return self.colour
+
+    def setcolour(self, colour):
+        self.colour = colour
+
+    def getx(self):
+        return self.x
+
+    def setx(self, x):
+        self.x = x
+
     def move(self, direction, steps):
         print(f"moveing snake in direction {direction} for {steps} steps")
 
@@ -65,3 +86,9 @@ if not hasNew:
 python = Python(100, "green", 1, 1, 20, "africa")
 
 print(python)
+
+print(python.gethealth())
+
+print(python.sethealth("100"))
+
+print(python.sethealth(-1))
