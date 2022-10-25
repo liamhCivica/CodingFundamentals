@@ -4,16 +4,27 @@ class DatabaseObject:
 
 
     def __init__(self, databaseName):
-        self.conn = sqlite3.connect(databaseName)
-        self.cursor = self.conn.cursor()
-
+        try:
+            self.conn = sqlite3.connect(databaseName)
+            self.cursor = self.conn.cursor()
+        except Exception as e:
+            print(str(e))
     def close(self):
-        self.cursor.close()
-        self.conn.commit()
-        self.conn.close()
+        try:
+            self.cursor.close()
+            self.conn.commit()
+            self.conn.close()
+        except Exception as e:
+            print(str(e))
 
     def Execute(self, query):
-        self.cursor.execute(query)
+        try:
+            self.cursor.execute(query)
+        except Exception as e:
+            print(str(e))
 
     def Read(self, query):
-        return self.cursor.execute(query).fetchall()
+        try:
+            return self.cursor.execute(query).fetchall()
+        except Exception as e:
+            print(str(e))
