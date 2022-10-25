@@ -38,6 +38,7 @@ def Menu():
         3. insert meal
         4. insert meal item
         5. drop tables
+        6. update meal
     """)
 
 db = DatabaseObject("test")
@@ -57,11 +58,15 @@ elif choice == 3:
     size = input("enter meal size")
     db.Execute(InsertDataSQL + f"'{mealname}', '{group}', '{size}' )")
 elif choice == 4:
-    mealname = input("enter meal name")
-    mealID = input("enter meal group")
+    mealname = input("enter meal item name")
+    mealID = input("enter meal id")
     db.Execute(InsertMealItemSQL + f"'{mealname}', {mealID} )")
 elif choice == 5:
     db.Execute(DropTable + "MealItem")
     db.Execute(DropTable + "Meal")
+elif choice == 6:
+    mealname = input("enter meal name to update")
+    size = input("enter size to update to")
+    db.Execute(f"update meal set size = '{size}' where mealname = '{mealname}' ")
 
 db.close()
